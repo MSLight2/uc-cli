@@ -4,6 +4,8 @@ const merge = require('webpack-merge');
 const WebpackBaseConfig = require('./webpack.base.conf');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+let finishedServe = null
 
 const DevWebpackConfig = merge(WebpackBaseConfig, {
   mode: 'development',
@@ -13,10 +15,10 @@ const DevWebpackConfig = merge(WebpackBaseConfig, {
     compress: true,
     // // 控制台初始启动信息之外都不显示
     // quiet: true,
-    host: '0.0.0.0',
+    host: 'localhost',
     noInfo: true,
     stats: "errors-only",
-    open: true,
+    open: false,
     clientLogLevel: 'none',
     hot: true,
     port: 8040,
@@ -28,7 +30,7 @@ const DevWebpackConfig = merge(WebpackBaseConfig, {
       poll: 500
     },
     after (app, server) {
-      terminalLog(server)
+      finishedServe = server
     }
   },
   plugins: [
@@ -39,6 +41,13 @@ const DevWebpackConfig = merge(WebpackBaseConfig, {
       filename: 'index.html',
       template: path.join(__dirname, '..', 'public/index.html')
     }),
+    // webpack编译进度(还可使用 Friendly-errors-webpack-plugin 插件)
+    // new ProgressBarPlugin({
+    //   complete: '-',
+    //   format: '  build [:bar] :percent (:elapsed seconds)',
+    //   clear: false
+    // }),
+    new webpack.ProgressPlugin(processHandler),
     // 热更新
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin()
@@ -83,15 +92,41 @@ function terminalLog (server) {
    */
   let devServer = server.compiler.options.devServer;
   console.log('Use \033[40;33mCtrl+C\033[0m to close it\r\n')
-  console.log(
-    'App running at:\n' +
-    '- Local:   \033[40;35mhttp://localhost:' + devServer.port +'/\033[0m\n' +
-    '           \033[40;35mhttp://' + devServer.host + ':' + devServer.port +'/\033[0m\n' +
-    '- Network: \033[40;35mhttp://' + getIPAdress() + ':' + devServer.port +'/\033[0m\r\n'
-  )
+  if (devServer.host === 'localhost') {
+    console.log(
+      'App running at:\n' +
+      '- Local:   \033[40;35mhttp://localhost:' + devServer.port +'/\033[0m\n' +
+      '           \033[40;35mhttp://127.0.0.1:' + devServer.port +'/\033[0m\r\n'
+    )
+  } else if (devServer.host === '0.0.0.0') {
+    console.log(
+      'App running at:\n' +
+      '- Local:   \033[40;35mhttp://localhost:' + devServer.port +'/\033[0m\n' +
+      '           \033[40;35mhttp://' + devServer.host + ':' + devServer.port +'/\033[0m\n' +
+      '- Network: \033[40;35mhttp://' + getIPAdress() + ':' + devServer.port +'/\033[0m\r\n'
+    )
+  } else {
+    console.log(
+      'App running at:\n' +
+      '- Network: \033[40;35mhttp://' + devServer.host + ':' + devServer.port +'/\033[0m\r\n'
+    )
+  }
   console.log('In production mode you need to run\033[40;34m npm run build\033[0m\n')
 }
 
-const compiler = webpack({...DevWebpackConfig});
+let firstInfo = false
+function processHandler (percentage, message, ...args) {
+  const process = require('process');
+  if (percentage <= 0 && !firstInfo) {
+    firstInfo = true
+    console.log('\033[44;30m Info \033[0m \033[40;34m Compiling...\033[0m\n')
+  }
+  process.stdout.write(`${percentage.toFixed(2) * 100}% building message:${message}\r`)
+  if (percentage >= 1) firstInfo = false
+}
+
+const compiler = webpack(DevWebpackConfig);
 compiler.run((err, stats) => {
+  console.log('\n\033[42;30m Done \033[0m \033[40;32m Successful compilation in '+ (stats.endTime - stats.startTime) + 'ms \033[0m\n')
+  terminalLog(finishedServe)
 })
