@@ -8,7 +8,7 @@
     open http://localhost:8080/
     
     build: npm run build
-##### 具体配置请看`build`文件夹 #####
+#### 具体配置请看`build`文件夹 ####
 
 `webpack.base.conf.js` ---- 最基本配置
 
@@ -18,7 +18,7 @@
 
 `config.js`            ---- 可自定义的配置，覆盖原有配置（dev: 开发环境，build: 生产环境）
 
-##### config.js #####
+#### config.js ####
 `dev.host`: 开发环境启动地址。默认`localhost`
 
 `dev.port`: 启动端口。默认`8080`
@@ -32,3 +32,6 @@
 `dev.proxy`: 前端代理配置。默认{}
 
 `build.sourceMap`: 是否启用sourceMap。默认false
+
+
+>遗留问题：config.js下有个`portIsOccupied`方法检测端口是否被占用，占用则用新端口；本意用于解决webpack-dev-server端口占用问题，但并未生效。（暂时没找到解决办法，有知道的希望可以指点一波~）
