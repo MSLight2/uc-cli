@@ -1,7 +1,7 @@
 let config = {
   dev: {
     host: 'localhost',
-    port: portIsOccupied(8081),
+    port: portIsOccupied(8080),
     // 查看编译进度，可选值: (bar | default)
     terminalProcess: 'default',
     // 是否自动在浏览器打开
