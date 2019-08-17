@@ -1,4 +1,5 @@
 var path = require('path');
+const config =  require('./config')
 const merge = require('webpack-merge');
 const WebpackBaseConfig = require('./webpack.base.conf');
 const webpack = require('webpack');
@@ -29,7 +30,7 @@ module.exports = merge(WebpackBaseConfig, {
     minimizer: [
       // 压缩js文件
       new UglifyJsPlugin({
-        sourceMap: false,
+        sourceMap: config.build.sourceMap,
         uglifyOptions: {
           warnings: false,
           compress: {

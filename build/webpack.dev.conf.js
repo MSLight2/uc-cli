@@ -1,11 +1,13 @@
 var path = require('path');
+const config =  require('./config')
 const os = require('os');
 const merge = require('webpack-merge');
 const WebpackBaseConfig = require('./webpack.base.conf');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-let finishedServe = null
+let dServe = null;
+let hadFinishd = false
 
 const DevWebpackConfig = merge(WebpackBaseConfig, {
   mode: 'development',
@@ -15,22 +17,22 @@ const DevWebpackConfig = merge(WebpackBaseConfig, {
     compress: true,
     // // 控制台初始启动信息之外都不显示
     // quiet: true,
-    host: 'localhost',
+    host: config.dev.host,
+    port: config.dev.port,
     noInfo: true,
     stats: "errors-only",
-    open: false,
+    open: config.dev.autoOpenBrowser,
     clientLogLevel: 'none',
     hot: true,
-    port: 8040,
-    // // 是否在屏幕上显示错误
-    // overlay: true,
+    overlay: config.dev.showsErrFullScreen,
+    proxy: config.dev.proxy,
     watchOptions: {
       ignored: /node_modules/,
       aggregateTimeout: 500,
       poll: 500
     },
     after (app, server) {
-      finishedServe = server
+      dServe = server
     }
   },
   plugins: [
@@ -42,12 +44,14 @@ const DevWebpackConfig = merge(WebpackBaseConfig, {
       template: path.join(__dirname, '..', 'public/index.html')
     }),
     // webpack编译进度(还可使用 Friendly-errors-webpack-plugin 插件)
-    // new ProgressBarPlugin({
-    //   complete: '-',
-    //   format: '  build [:bar] :percent (:elapsed seconds)',
-    //   clear: false
-    // }),
-    new webpack.ProgressPlugin(processHandler),
+    config.dev.terminalProcess === 'bar'
+      ? new ProgressBarPlugin({
+          complete: '-',
+          format: '  build [:bar] :percent (:elapsed seconds)',
+          clear: false
+        })
+      : new webpack.ProgressPlugin(processHandler)
+    ,
     // 热更新
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin()
@@ -122,11 +126,17 @@ function processHandler (percentage, message, ...args) {
     console.log('\033[44;30m Info \033[0m \033[40;34m Compiling...\033[0m\n')
   }
   process.stdout.write(`${percentage.toFixed(2) * 100}% building message:${message}\r`)
-  if (percentage >= 1) firstInfo = false
+  if (percentage >= 1 && hadFinishd) {
+    firstInfo = false
+    console.log('\n\033[42;30m Done \033[0m \033[40;32m Successful compilation\n')
+  }
 }
 
 const compiler = webpack(DevWebpackConfig);
 compiler.run((err, stats) => {
-  console.log('\n\033[42;30m Done \033[0m \033[40;32m Successful compilation in '+ (stats.endTime - stats.startTime) + 'ms \033[0m\n')
-  terminalLog(finishedServe)
+  if (config.dev.terminalProcess !== 'bar') {
+    hadFinishd = true
+    console.log('\n\033[42;30m Done \033[0m \033[40;32m Successful compilation in '+ (stats.endTime - stats.startTime) + 'ms \033[0m\n')
+  }
+  terminalLog(dServe)
 })

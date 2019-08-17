@@ -28,7 +28,8 @@ module.exports = {
               : MiniCssExtractPlugin.loader,
             {
               loader: 'css-loader',
-              options: { importLoaders: 1 }
+              // importLoaders为 1 时 @import引入的css不会添加兼容写法
+              options: { importLoaders: 2 }
             },
             'postcss-loader'
           ]
