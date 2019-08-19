@@ -75,6 +75,7 @@ function getIPAdress () {
   return localIPAddress
 }
 
+// 打印服务启动的地址以及一些提示
 function terminalLog (server) {
   /**
    * \033[背景色编号;字色编号m
@@ -118,6 +119,7 @@ function terminalLog (server) {
   console.log('In production mode you need to run\033[40;34m npm run build\033[0m\n')
 }
 
+// 打印编译、打包进度（terminalProcess值为default时启用）
 let firstInfo = false
 function processHandler (percentage, message, ...args) {
   const process = require('process');
