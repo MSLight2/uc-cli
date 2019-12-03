@@ -35,5 +35,5 @@
 
 `build.sourceMap`: 是否启用sourceMap。默认false
 
-详细说明地址：[https://juejin.im/post/5d6f7973e51d4562092388bd]https://juejin.im/post/5d6f7973e51d4562092388bd)
+详细说明地址：[https://juejin.im/post/5d6f7973e51d4562092388bd](https://juejin.im/post/5d6f7973e51d4562092388bd)
 >遗留问题：config.js下有个`portIsOccupied`方法检测端口是否被占用，占用则用新端口；本意用于解决webpack-dev-server端口占用问题，但并未生效。（暂时没找到解决办法，有知道的希望可以指点一下~）
