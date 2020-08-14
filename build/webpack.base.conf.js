@@ -13,6 +13,8 @@ module.exports = {
     filename: 'js/[name].js'
   },
   resolve: {
+    // 配置导入时省略的后缀名
+    extensions: ['.js', '.json', '.css', '.vue'],
     alias: {
       '@': path.join(__dirname, '..', 'src')
     }
