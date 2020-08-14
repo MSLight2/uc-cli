@@ -1,10 +1,10 @@
 var path = require('path');
-const config =  require('./config')
+const config =  require('./config');
 const merge = require('webpack-merge');
 const WebpackBaseConfig = require('./webpack.base.conf');
 const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = merge(WebpackBaseConfig, {
