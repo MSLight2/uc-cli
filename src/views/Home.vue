@@ -1,8 +1,10 @@
 <template>
-  <div>
+  <div class="container">
     <img :src="logoImg" alt="">
     <Hello/>
-    <a href="javascript:;">这是一个连接</a>
+    <div>vue文档：<a target="_blank" href="https://cn.vuejs.org/v2/guide/">vue</a></div>
+    <div>vue-router文档：<a target="_blank" href="https://router.vuejs.org/zh/">vue-router</a></div>
+    <div>vuex文档：<a target="_blank" href="https://vuex.vuejs.org/zh/">vuex</a></div>
   </div>
 </template>
 
@@ -12,7 +14,7 @@ export default {
   name: 'Home',
   data () {
     return {
-      logoImg: require('@/assets/logo.png')
+      logoImg: require('@/assets/cu.png')
     }
   },
   components: {
@@ -23,15 +25,25 @@ export default {
 
 <style>
   @import "../styles/app.css";
+  .container{
+    margin: 0 auto;
+    width: 275px;
+  }
+  .container div{
+    color: #0099cc;
+    margin: 5px 0;
+  }
   img{
+    width: 300px;
+    height: 300px;
     display: block;
     text-align: center;
     margin: 0 auto;
-    transform: scale(0.8);
   }
   a{
     text-align: center;
     width: 100%;
-    color: brown;
+    color: green;
+    text-decoration: underline;
   }
 </style>

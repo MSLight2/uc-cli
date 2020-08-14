@@ -7,15 +7,15 @@ export default {
   name: 'Hello',
   data () {
     return {
-      hello: 'Hello Vue ^_^'
+      hello: 'Hello~ 欢迎使用cu-cli。'
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
   .header-text{
-    color: aquamarine;
+    color: #ffd150;
     width: 100%;
     text-align: center;
     display: flex;
