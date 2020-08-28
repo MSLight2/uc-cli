@@ -3,6 +3,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const env = process.env.NODE_ENV.trim();
+const config =  require('./config');
+const utils =  require('./utils');
 
 module.exports = {
   entry: {
@@ -49,36 +51,6 @@ module.exports = {
         test: /\.vue$/,
         use: 'vue-loader'
       },
-      // 支持sass npm install sass-loader sass -D
-      {
-        test: /\.scss$/,
-        use: [
-          'vue-style-loader',
-          'css-loader',
-          'postcss-loader',
-          'sass-loader'
-        ]
-      },
-      // 支持less npm install less-loader less -D
-      {
-        test: /\.less$/,
-        use: [
-          'vue-style-loader',
-          'css-loader',
-          'postcss-loader',
-          'less-loader'
-        ]
-      },
-      // 支持stylus npm install stylus stylus-loader -D
-      {
-        test: /\.styl(us)?$/,
-        use: [
-          'vue-style-loader',
-          'css-loader',
-          'postcss-loader',
-          'stylus-loader'
-        ]
-      },
       {
         test: /\.js?$/,
         use: 'babel-loader',
@@ -108,7 +80,8 @@ module.exports = {
             }
           }
         ]
-      }
+      },
+      utils.cssPreRule(config.base.cssPre)
     ]
   },
   plugins: [

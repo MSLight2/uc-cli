@@ -1,7 +1,11 @@
 let config = {
+  base: {
+    // css预处理器
+    cssPre: ''
+  },
   dev: {
     host: 'localhost',
-    port: portIsOccupied(8082),
+    port: 8080,
     // 查看编译进度，可选值: (bar | default)
     terminalProcess: 'default',
     // 是否自动在浏览器打开
@@ -15,21 +19,5 @@ let config = {
   }
 }
 
-module.exports = config
 
-function portIsOccupied (port) {
-  const net = require('net')
-  const server = net.createServer().listen(port)
-  let noOccPort = port
-  server.on('listening',() => {
-    noOccPort = port
-    server.close()
-  })
-  server.on('error',(err)=>{
-    if (err.code === 'EADDRINUSE') {
-      console.log(`${port}端口已被占用，自动启用端口:${port + 1}`)
-      portIsOccupied(port + 1)
-    }
-  })
-  return noOccPort
-}
+module.exports = config
