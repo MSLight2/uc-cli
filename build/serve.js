@@ -4,7 +4,6 @@ const config =  require('./config');
 
 let defaultPort = config.dev.port
 portfinder.getPort({ port: defaultPort }, function(err, port) {
-  console.log(defaultPort, '--', port)
   if (!err) {
     let portConfig = []
     if (defaultPort !== port) {
