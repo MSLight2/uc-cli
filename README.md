@@ -5,7 +5,7 @@
     
     npm i
     
-    npm run dev
+    npm run serve
     
     open http://localhost:8080/
     
@@ -20,10 +20,12 @@
 
 `config.js`            ---- 可自定义的配置，覆盖原有配置（dev: 开发环境，build: 生产环境）
 
+`serve.js`             ---- 开发模式启动文件
+
 #### config.js ####
 `dev.host`: 开发环境启动地址。默认`localhost`
 
-`dev.port`: 启动端口。默认`8080`
+`dev.port`: 启动端口。默认`8080`，端口占用时，会自动使用未被占用的端口
 
 `dev.terminalProcess`: 开发环境启动时查看编译进度；有两种可选模式：bar为进度条模式，default以百分比显示进度
 
@@ -36,4 +38,3 @@
 `build.sourceMap`: 是否启用sourceMap。默认false
 
 详细说明地址：[https://juejin.im/post/5d6f7973e51d4562092388bd](https://juejin.im/post/5d6f7973e51d4562092388bd)
->遗留问题：config.js下有个`portIsOccupied`方法检测端口是否被占用，占用则用新端口；本意用于解决webpack-dev-server端口占用问题，但并未生效。（暂时没找到解决办法，有知道的希望可以指点一下~）
