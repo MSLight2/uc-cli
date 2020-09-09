@@ -1,54 +1,33 @@
 {
-  "name": "myvue-cli",
-  "version": "1.0.0",
-  "description": "",
   "private": true,
+  "name": "cu-cli",
+  "version": "0.1.0",
+  "description": "a custome cli for vue&react",
+  "main": "index.js",
   "scripts": {
-    "serve": "set NODE_ENV=development && node build/serve.js",
-    "build": "set NODE_ENV=production && webpack --config build/webpack.prod.conf.js"
+    "start": "node bin/index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "autoprefixer": "^9.6.1",
-    "babel-eslint": "^10.0.2",
-    "babel-loader": "^8.0.6",
-    "clean-webpack-plugin": "^3.0.0",
-    "cross-spawn": "^7.0.3",
-    "css-loader": "^3.1.0",
-    "eslint": "^6.1.0",
-    "eslint-formatter-pretty": "^2.1.1",
-    "eslint-loader": "^2.2.1",
-    "eslint-plugin-vue": "^5.2.3",
-    "html-webpack-plugin": "^3.2.0",
-    "mini-css-extract-plugin": "^0.8.0",
-    "optimize-css-assets-webpack-plugin": "^5.0.3",
-    "portfinder": "^1.0.28",
-    "postcss-loader": "^3.0.0",
-    "progress-bar-webpack-plugin": "^1.12.1",
-    "standard": "^13.1.0",
-    "style-loader": "^0.23.1",
-    "uglifyjs-webpack-plugin": "^2.2.0",
-    "url-loader": "^2.1.0",
-    "vue-loader": "^15.7.1",
-    "vue-style-loader": "^4.1.2",
-    "vue-template-compiler": "^2.6.10",
-    "webpack": "^4.38.0",
-    "webpack-cli": "^3.3.6",
-    "webpack-dev-server": "^3.7.2",
-    "webpack-merge": "^4.2.1"
+  "keywords": [
+    "cli",
+    "cu-cli",
+    "vue",
+    "react",
+    "node",
+    "webpack"
+  ],
+  "bin": {
+    "cu": "bin/index.js"
   },
+  "author": "LOG",
+  "license": "MIT",
   "dependencies": {
-    "vue": "^2.6.10",
-    "vue-router": "^3.0.7",
-    "vuex": "^3.1.1"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ]
+    "chalk": "^4.1.0",
+    "commander": "^6.1.0",
+    "cross-spawn": "^7.0.3",
+    "envinfo": "^7.7.3",
+    "inquirer": "^7.3.3",
+    "mem-fs": "^1.2.0",
+    "mem-fs-editor": "^7.0.1",
+    "which": "^2.0.2"
+  }
 }

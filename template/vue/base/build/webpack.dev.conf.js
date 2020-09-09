@@ -7,7 +7,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 let dServe = null;
-let hadFinishd = false
+let hadFinishd = false;
 
 const DevWebpackConfig = merge(WebpackBaseConfig, {
   mode: 'development',
