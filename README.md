@@ -1,4 +1,4 @@
-### @cu/cli
+### UC-CLI
 A tool for building `Vue / React` projects. Can quickly build projects. Currently, only `Vue` project construction is supported.
 
 There are two modes of manual build and default build.
@@ -10,9 +10,9 @@ After the project is built successfully, you can change the `webpack` configurat
 The function is similar to `vue-cli` or  `create-react-app`
 
 #### Usage: 
-> npm install -g cu-cli
+> npm install -g uc-cli
 > 
-> ce create my-project
+> uc create my-project
 
 #### Build Success
 > npm run serve

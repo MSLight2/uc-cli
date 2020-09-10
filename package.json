@@ -1,6 +1,6 @@
 {
   "private": false,
-  "name": "@cu/cli",
+  "name": "uc-cli",
   "version": "0.1.0",
   "description": "a custome cli for vue&react",
   "main": "index.js",
@@ -9,15 +9,14 @@
   },
   "keywords": [
     "cli",
-    "cu-cli",
-    "@cu/cli",
+    "uc-cli",
     "vue",
     "react",
     "node",
     "webpack"
   ],
   "bin": {
-    "ce": "bin/index.js"
+    "uc": "bin/index.js"
   },
   "author": "LOG",
   "license": "MIT",
