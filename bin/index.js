@@ -57,7 +57,7 @@ if (program.info) {
           'Safari',
         ],
         npmPackages: ['vue', 'react'],
-        npmGlobalPackages: ['cu-cli'],
+        npmGlobalPackages: ['ce-cli'],
       },
       {
         duplicates: true,
@@ -68,7 +68,7 @@ if (program.info) {
 }
 
 if (typeof cmdOption === 'undefined') {
-  console.log(`\n${chalk.red('cu-cli error: 请输入正确的指令')}`)
+  console.log(`\n${chalk.red('ce-cli error: 请输入正确的指令')}`)
   console.log('例如: cu create projectName. 使用--help指令查看详情')
   process.exit(1)
 }

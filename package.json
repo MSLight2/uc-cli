@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "cu-cli",
+  "name": "ce-cli",
   "version": "0.1.0",
   "description": "a custome cli for vue&react",
   "main": "index.js",
@@ -9,7 +9,7 @@
   },
   "keywords": [
     "cli",
-    "cu-cli",
+    "ce-cli",
     "vue",
     "react",
     "node",
