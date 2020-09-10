@@ -12,6 +12,8 @@ After the project is built successfully, you can change the `webpack` configurat
 
 The function is similar to `vue-cli` or  `create-react-app`
 
+- The configuration template can be viewed in the template branch
+
 #### Usage: 
 > npm install -g uc-cli
 > 
