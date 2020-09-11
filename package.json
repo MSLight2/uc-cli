@@ -1,7 +1,7 @@
 {
-  "private": false,
+  "private": true,
   "name": "uc-cli",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "a custome cli for vue&react",
   "main": "index.js",
   "scripts": {
@@ -15,6 +15,10 @@
     "node",
     "webpack"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MSLight2/uc-cli"
+  },
   "bin": {
     "uc": "bin/index.js"
   },
