@@ -14,14 +14,14 @@
 
 使用方式和`vue-cli`类似
 
-- 可以在[Github](https://github.com/MSLight2/uc-cli)的`template`分支中查看webpack配置模板
+- 可以在[Github](https://github.com/MSLight2/uc-cli)的`template`分支中查看vue模板的webpack配置
 
 #### 使用: 
 > npm install -g uc-cli
 > 
 > uc create my-project
 
-#### 构建成功后，跳转到项目文加下运行：
+#### 构建成功后，跳转到项目文件夹下运行：
 > npm run serve
 > 
 > npm run build
